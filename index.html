@@ -73,7 +73,117 @@ footer{text-align:center;padding:35px 6%;border-top:1px solid #29233b;color:#888
   </div>
 </nav>
 
-<main>
+<main><section id="mini-game" style="padding:30px 6%;text-align:center;">
+  <h2 class="title">🎮 <span>COIN RUSH</span></h2>
+
+  <div id="gameBox" style="
+    max-width:600px;
+    height:350px;
+    margin:auto;
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(135deg,#12052b,#090912);
+    border:2px solid #8d43ff;
+    border-radius:20px;
+    box-shadow:0 0 35px rgba(125,70,255,.25);
+  ">
+    
+    <div style="padding:15px;font-size:20px;">
+      Score: <b id="score">0</b>
+      &nbsp; | &nbsp;
+      Time: <b id="time">30</b>
+    </div>
+
+    <button id="coin" onclick="collectCoin()" style="
+      position:absolute;
+      left:50%;
+      top:55%;
+      transform:translate(-50%,-50%);
+      width:65px;
+      height:65px;
+      border-radius:50%;
+      border:0;
+      background:#ffd43b;
+      font-size:30px;
+      cursor:pointer;
+      box-shadow:0 0 25px #ffd43b;
+    ">🪙</button>
+
+    <div id="gameMessage" style="
+      position:absolute;
+      bottom:20px;
+      width:100%;
+      font-weight:bold;
+      color:#bbb;
+    ">
+      Tap the coin! 🪙
+    </div>
+  </div>
+
+  <button onclick="startGame()" style="
+    margin-top:18px;
+    padding:13px 25px;
+    border:0;
+    border-radius:10px;
+    background:linear-gradient(90deg,#6b25ff,#4d8dff);
+    color:white;
+    font-weight:bold;
+    font-size:16px;
+    cursor:pointer;
+  ">▶ PLAY / RESTART</button>
+</section>
+
+<script>
+let score = 0;
+let time = 30;
+let timer;
+let playing = false;
+
+function startGame() {
+  score = 0;
+  time = 30;
+  playing = true;
+
+  document.getElementById("score").textContent = score;
+  document.getElementById("time").textContent = time;
+  document.getElementById("gameMessage").textContent = "Tap the coin! 🪙";
+
+  moveCoin();
+
+  clearInterval(timer);
+
+  timer = setInterval(() => {
+    time--;
+    document.getElementById("time").textContent = time;
+
+    if (time <= 0) {
+      clearInterval(timer);
+      playing = false;
+      document.getElementById("gameMessage").textContent =
+        "🏆 Game Over! Your Score: " + score;
+    }
+  }, 1000);
+}
+
+function collectCoin() {
+  if (!playing) return;
+
+  score++;
+  document.getElementById("score").textContent = score;
+  moveCoin();
+}
+
+function moveCoin() {
+  const coin = document.getElementById("coin");
+  const box = document.getElementById("gameBox");
+
+  const x = Math.random() * (box.clientWidth - 80) + 40;
+  const y = Math.random() * (box.clientHeight - 130) + 80;
+
+  coin.style.left = x + "px";
+  coin.style.top = y + "px";
+}
+</script>
 <section class="hero" id="home">
   <div class="hero-text">
     <div class="badge">WELCOME TO</div>
