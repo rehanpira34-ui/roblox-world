@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rehan's Roblox World</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#05050a;color:#fff;line-height:1.5;
+}
+nav{
+  position:sticky;top:0;z-index:10;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 6%;background:rgba(5,5,10,.94);
+  border-bottom:1px solid #6f35ff;
+  backdrop-filter:blur(10px);
+}
+.logo{font-size:22px;font-weight:800;color:#a66cff}
+nav a{color:#ddd;text-decoration:none;margin-left:22px;font-size:14px}
+nav a:hover{color:#b77cff}
+.hero{
+  min-height:70vh;padding:70px 6%;display:flex;align-items:center;
+  background:
+    radial-gradient(circle at 75% 35%,rgba(126,55,255,.28),transparent 30%),
+    linear-gradient(135deg,#090912,#13072b 55%,#05050a);
+}
+.hero-text{max-width:620px}
+.badge{color:#a66cff;font-weight:800;letter-spacing:2px}
+h1{font-size:clamp(44px,8vw,82px);line-height:.95;margin:15px 0}
+h1 span{color:#9b55ff}
+.hero p{color:#bbb;max-width:520px;margin:20px 0}
+.btn{
+  display:inline-block;padding:13px 22px;border-radius:10px;
+  text-decoration:none;color:white;font-weight:700;margin-right:10px;
+  background:linear-gradient(90deg,#6b25ff,#4d8dff);
+  box-shadow:0 0 25px rgba(125,70,255,.25)
+}
+.btn.alt{background:transparent;border:1px solid #8d43ff}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.card{
+  background:linear-gradient(145deg,#11111c,#0b0b12);
+  border:1px solid #29233b;border-radius:16px;padding:20px
+}
+.stat b{display:block;font-size:27px;color:#fff}
+.stat small{color:#999}
+section{padding:60px 6%}
+.title{font-size:32px;margin-bottom:24px}
+.title span{color:#a55cff}
+.showcase{
+  max-width:1200px;margin:auto;background:#0a0a11;border:1px solid #29233b;
+  border-radius:18px;padding:14px;box-shadow:0 0 45px rgba(100,50,255,.12)
+}
+.showcase img{width:100%;display:block;border-radius:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.game h3{margin:10px 0 3px}.game p{color:#999;font-size:14px}
+.timeline .item{border-left:3px solid #8d43ff;padding:0 0 25px 20px;margin-left:8px}
+.timeline .year{color:#a55cff;font-weight:800}
+footer{text-align:center;padding:35px 6%;border-top:1px solid #29233b;color:#888}
+@media(max-width:700px){
+ nav a{display:none}.hero{padding-top:50px}.stats{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">REHAN'S ROBLOX WORLD</div>
+  <div>
+    <a href="#home">HOME</a><a href="#showcase">SHOWCASE</a>
+    <a href="#games">GAMES</a><a href="#history">HISTORY</a>
+  </div>
+</nav>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="badge">WELCOME TO</div>
+    <h1>REHAN'S<br><span>ROBLOX WORLD</span></h1>
+    <p>My Roblox journey, favourite games, avatar and achievements — all in one place.</p>
+    <a class="btn" href="#showcase">VIEW WEBSITE DESIGN</a>
+    <a class="btn alt" href="#games">FAVOURITE GAMES</a>
+    <div class="stats">
+      <div class="card stat"><b>0</b><small>ROBUX</small></div>
+      <div class="card stat"><b>2021</b><small>JOINED ROBLOX</small></div>
+      <div class="card stat"><b>0</b><small>FRIENDS</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="showcase">
+  <h2 class="title">My <span>Website Design</span> 🎮</h2>
+  <div class="showcase">
+    <img src="roblox-dashboard.png" alt="Rehan's Roblox World website design">
+  </div>
+</section>
+
+<section id="games">
+  <h2 class="title">Favourite <span>Games</span> ⭐</h2>
+  <div class="grid">
+    <div class="card game"><h3>🎮 Roblox Game #1</h3><p>Add your favourite game here.</p></div>
+    <div class="card game"><h3>🎮 Roblox Game #2</h3><p>Add your favourite game here.</p></div>
+    <div class="card game"><h3>🎮 Roblox Game #3</h3><p>Add your favourite game here.</p></div>
+    <div class="card game"><h3>🎮 Roblox Game #4</h3><p>Add your favourite game here.</p></div>
+  </div>
+</section>
+
+<section id="history">
+  <h2 class="title">Roblox <span>History</span> 📜</h2>
+  <div class="card timeline">
+    <div class="item"><div class="year">2021</div><b>Joined Roblox</b><p>My Roblox journey begins.</p></div>
+    <div class="item"><div class="year">2022–2023</div><b>Explored & Played</b><p>Played different experiences and made memories.</p></div>
+    <div class="item"><div class="year">2024–Now</div><b>Still Grinding!</b><p>Creating, exploring and enjoying Roblox.</p></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  REHAN'S ROBLOX WORLD • Made for Roblox fans 🎮
+</footer>
+</body>
+</html>
