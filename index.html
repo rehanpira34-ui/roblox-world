@@ -64,7 +64,130 @@ footer{text-align:center;padding:35px 6%;border-top:1px solid #29233b;color:#888
 }
 </style>
 </head>
-<body>
+<body><section id="roblox-profile">
+  <h2>🎮 Roblox Profile</h2>
+
+  <input id="username" type="text" placeholder="Enter Roblox username">
+  <button onclick="loadProfile()">Search</button>
+
+  <div id="profileResult"></div>
+</section>
+
+<script>
+async function loadProfile() {
+  const username = document.getElementById("username").value.trim();
+  const result = document.getElementById("profileResult");
+
+  if (!username) {
+    result.innerHTML = "⚠️ Username enter karo!";
+    return;
+  }
+
+  result.innerHTML = "🔄 Loading...";
+
+  try {
+    const userResponse = await fetch(
+      "https://users.roblox.com/v1/usernames/users",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          usernames: [username],
+          excludeBannedUsers: false
+        })
+      }
+    );
+
+    const userData = await userResponse.json();
+
+    if (!userData.data || userData.data.length === 0) {
+      result.innerHTML = "❌ User nahi mila!";
+      return;
+    }
+
+    const user = userData.data[0];
+
+    const profileResponse = await fetch(
+      `https://users.roblox.com/v1/users/${user.id}`
+    );
+
+    const profile = await profileResponse.json();
+
+    const avatarResponse = await fetch(
+      `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${user.id}&size=150x150&format=Png&isCircular=false`
+    );
+
+    const avatarData = await avatarResponse.json();
+    const avatar = avatarData.data[0]?.imageUrl || "";
+
+    result.innerHTML = `
+      <div class="profile-card">
+        <img src="${avatar}" alt="Roblox Avatar">
+
+        <h3>${profile.displayName}</h3>
+        <p>@${profile.name}</p>
+        <p><b>User ID:</b> ${profile.id}</p>
+
+        <p><b>Created:</b>
+          ${new Date(profile.created).toLocaleDateString()}
+        </p>
+
+        <p><b>Description:</b><br>
+          ${profile.description || "No description"}
+        </p>
+
+        <a
+          href="https://www.roblox.com/users/${profile.id}/profile"
+          target="_blank"
+        >
+          🔗 Open Roblox Profile
+        </a>
+      </div>
+    `;
+  } catch (error) {
+    console.error(error);
+    result.innerHTML = "❌ Profile load nahi hua. Dobara try karo.";
+  }
+}
+</script>
+
+<style>
+#roblox-profile {
+  padding: 25px;
+  text-align: center;
+}
+
+#roblox-profile input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+}
+
+#roblox-profile button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.profile-card {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 400px;
+  border-radius: 15px;
+  background: #f2f2f2;
+}
+
+.profile-card img {
+  width: 150px;
+  border-radius: 15px;
+}
+
+.profile-card a {
+  text-decoration: none;
+  font-weight: bold;
+}
+</style>
 <nav>
   <div class="logo">REHAN'S ROBLOX WORLD</div>
   <div>
